@@ -17,8 +17,8 @@ let cat =Object.create(Object.prototype,
             writable: true,
             configurable: true
         },
-        displayName:{
-            value: function(){ display(this.name); },
+        display:{
+            value: function(){ display(this); },
             enumerable: true,
             writable: true,
             configurable: true
@@ -26,4 +26,4 @@ let cat =Object.create(Object.prototype,
     }
     );
 
-cat.displayName();
+cat.display();
