@@ -1,5 +1,5 @@
 function display() {
-    for (var i = 0; i < arguments.length; i++) {
+    for (let i = 0; i < arguments.length; i++) {
         if (typeof arguments[i] === 'object')
             displayObject(arguments[i]);
         else
@@ -11,16 +11,16 @@ function displayObject(object) {
     if (object == null)
         displayValue('null');
     displayValue(getTypeName(object) + ' {');
-    for(var propertyName in object) {
-        if (propertyName != 'constructor') {
-            displayValue(propertyName + ': ' + object[propertyName], false, true);
+    for(let propertyName in object) {
+        if (propertyName !== 'constructor') {
+            displayValue(`${propertyName}: ${object[propertyName]}`, false, true);
         }
     }
     displayValue('}', true);
 }
 
 function displayValue(value, addMargin, addPadding) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.style.fontSize='32px';
     if (addMargin)
         div.style.marginBottom='30px';
@@ -31,8 +31,8 @@ function displayValue(value, addMargin, addPadding) {
 }
 
 function getTypeName(object) {
-    var funcNameRegex = /function (.{1,})\(/;
-    var results = (funcNameRegex).exec(object.constructor.toString());
+    let funcNameRegex = /function (.{1,})\(/;
+    let results = (funcNameRegex).exec(object.constructor.toString());
     return (results && results.length > 1) ? results[1] : "";
 }
 

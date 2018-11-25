@@ -1,16 +1,15 @@
+"use strict";
+
 import '../styles/index.scss';
-import cdisplay from "./modules/display.js";
+import display from "./modules/display.js";
 
-console.log('OK');
+function Cat(){
+    this.name = "Vasya";
+    this.age = 8;
+    this.displayName = function () {
+        display(this.name);
+    };
+}
 
-let a = {
-  b: 5,
-  c: 10,
-};
-
-let d = [1,2,"333"];
-let e = function(x){
-    console.log(x);
-};
-
-cdisplay("Hello world" , a, d, e);
+let cat = new Cat();
+cat.displayName();
