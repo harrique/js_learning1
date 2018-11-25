@@ -9,10 +9,24 @@ let cat = {
     color: 'gray'
 };
 
-display(cat.name);
-Object.defineProperty(cat, 'name', {writable: false});
-cat.name.first='Barsik';
-display(cat.name);
-Object.freeze(cat.name);
-// cat.name.first='murzik'; - not possible
-display(Object.getOwnPropertyDescriptor(cat, 'name'));
+Object.defineProperty(cat, 'name', {enumerable: false});
+
+for (let p in cat){
+    display(p + ': ' + cat[p]);
+}
+
+display(Object.keys(cat));
+
+display(JSON.stringify(cat));
+
+/* result:
+age: 3
+color: gray
+
+Array {
+0: age
+1: color
+}
+
+{"age":3,"color":"gray"}
+*/
