@@ -3,22 +3,26 @@
 import '../styles/index.scss';
 import display from "./modules/display.js";
 
+function Animal(voice){
+    this.voice = voice || 'grunt';
+}
+
+Animal.prototype.speak = function(){
+  display(this.voice);
+};
+
 function Cat(name, color){
+    Animal.call(this, 'Meow');
     this.name = name;
     this.color = color;
 }
 
-Cat.prototype.age = 4;
+Cat.prototype = Object.create(Animal.prototype);
+Cat.prototype.constructor = Cat;
 
 let fluffy = new Cat('Fluffy', 'white');
-let muffin = new Cat('Muffin', 'brown');
 
-display(fluffy.age, muffin.age);    // 4   4
-display(Cat.prototype === fluffy.__proto__);    // true
+fluffy.speak(); //Meow
 
-Cat.prototype = {age: 6};
+display(fluffy.__proto__ , fluffy.__proto__.__proto__); //Cat   Animal
 
-let snowbell = new Cat('Snowbell', 'black');
-display(fluffy.age, snowbell.age);    // 4   6
-
-display(Cat.prototype === fluffy.__proto__);    // false
