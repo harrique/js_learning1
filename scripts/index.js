@@ -9,24 +9,24 @@ let cat = {
     color: 'gray'
 };
 
-Object.defineProperty(cat, 'name', {enumerable: false});
+Object.defineProperty(cat, 'fullName', {
+   get: function () {
+       return this.name.first + " " + this.name.last;
+   },
+   set: function (value) {
+       let nameParts = value.split(' ');
+       this.name.first = nameParts[0];
+       this.name.last = nameParts[1];
+   } 
+});
 
-for (let p in cat){
-    display(p + ': ' + cat[p]);
-}
+display(cat.fullName);
 
-display(Object.keys(cat));
+cat.fullName = "John Doe";
 
-display(JSON.stringify(cat));
+display(cat.fullName);
 
 /* result:
-age: 3
-color: gray
-
-Array {
-0: age
-1: color
-}
-
-{"age":3,"color":"gray"}
+Vasya The best
+John Doe
 */
