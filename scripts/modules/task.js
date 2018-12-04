@@ -1,7 +1,8 @@
 class Task{
-    constructor(name, completed = false){
-        this.name = name;
-        this.completed = completed;
+    constructor(data){
+        this.name = data.name;
+        this.completed = data.completed;
+        this.repo = data.repo;
     }
 
     toggle_complete(){
@@ -10,6 +11,7 @@ class Task{
         }
 
         this.completed = !this.completed;
+        this.repo.save(this);
     }
 }
 
